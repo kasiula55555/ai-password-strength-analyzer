@@ -4,3 +4,12 @@ cammon_pass = {
 }
 
 sequences = ["abcdefghijklmnopqrstuvwxyz", "qwertyuiop", "asdfghjkl", "zxcvbnm", "0123456789"]
+
+def shannon_entropy(passwd: str) -> float:
+    #gdy pusty string
+    if not passwd:
+        return 0
+    counts = Counter(passwd)
+    n = len(passwd)
+
+    return -sum((c/n) * math.log2(c/n) for c in counts.values())
