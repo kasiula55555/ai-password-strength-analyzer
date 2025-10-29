@@ -29,3 +29,12 @@ def has_sequence(passwd:str, min_run:int = 3) -> bool:
             if run in passwd_lower:
                 return True
     return False
+
+def repeated_characters(passwd:str)->float
+    if not passwd:
+        return 0.0
+    counts = counter(passwd)
+    most = max(counts.values())
+
+    return most / len(passwd)
+
