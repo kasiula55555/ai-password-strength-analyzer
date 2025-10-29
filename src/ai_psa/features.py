@@ -38,3 +38,22 @@ def repeated_characters(passwd:str)->float
 
     return most / len(passwd)
 
+def char_classes(passws:str)->Dict[str,int]:
+    classes = {
+        "lower":0,
+        "upper":0,
+        "digit":0,
+        "special":0
+    }
+
+    for c in passws:
+        if c.islower():
+            classes["lower"] += 1
+        elif c.isupper():
+            classes["upper"] += 1
+        elif c.isdigit():
+            classes["digit"] += 1
+        else:
+            classes["special"] += 1
+    return classes
+
