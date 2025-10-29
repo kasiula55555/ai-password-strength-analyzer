@@ -57,3 +57,35 @@ def char_classes(passws:str)->Dict[str,int]:
             classes["special"] += 1
     return classes
 
+def features_main(passwd:str)->Dict[str,float]:
+    classes = char_classes(passdw)
+    len_passwd = len(passwd)
+    diversity = sum(1 for v in classes.values() if v > 0)
+    features = {
+        "length": len_passwd,
+        "diversity": diversity,
+        "lowercase_count": classes["lower"],
+        "uppercase_count": classes["upper"],
+        "digit_count": classes["digit"],
+        "special_count": classes["special"],
+        "shannon_entropy": shannon_entropy(passwd),
+        "has_sequence": int(has_sequence(passwd)),
+        "repeated_char_fraction": repeated_characters(passwd),
+        "is_common_password": int(passwd in cammon_pass)
+    }
+    features_order=[
+        "length",
+        "diversity",
+        "lowercase_count",
+        "uppercase_count",
+        "digit_count",
+        "special_count",
+        "shannon_entropy",
+        "has_sequence",
+        "repeated_char_fraction",
+        "is_common_password"
+    ]
+
+def vectorize_features(passwd:str):
+    f = features_main(passwd)
+    return [f[feat] for feat in features_order]
